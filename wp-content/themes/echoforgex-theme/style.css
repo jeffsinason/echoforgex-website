@@ -1,0 +1,1161 @@
+/*
+ Theme Name:   EchoForgeX Theme
+ Theme URI:    https://echoforgex.com
+ Description:  Custom child theme for EchoForgeX, based on GeneratePress
+ Author:       EchoForgeX LLC
+ Author URI:   https://echoforgex.com
+ Template:     generatepress
+ Version:      1.0.1
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  echoforgex
+*/
+
+/* ==========================================================================
+   CSS Custom Properties (Design Tokens)
+   ========================================================================== */
+
+:root {
+    /* Brand Colors */
+    --color-navy-dark: #0A1628;
+    --color-navy-medium: #1A2744;
+    --color-blue-primary: #2D7DD2;
+    --color-blue-light: #4A9BE8;
+    --color-cyan-accent: #00C2FF;
+
+    /* Neutral Colors */
+    --color-white: #FFFFFF;
+    --color-gray-100: #F8FAFC;
+    --color-gray-300: #CBD5E1;
+    --color-gray-500: #64748B;
+    --color-gray-700: #334155;
+    --color-gray-900: #0F172A;
+
+    /* Gradients */
+    --gradient-brand: linear-gradient(135deg, #2D7DD2 0%, #00C2FF 100%);
+    --gradient-button: linear-gradient(135deg, #2D7DD2 0%, #4A9BE8 100%);
+
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Type Scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 4px 12px rgba(45, 125, 210, 0.4);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.2s ease;
+    --transition-slow: 0.3s ease;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-navy-dark);
+    color: var(--color-white);
+    line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-white);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-gray-300);
+}
+
+a {
+    color: var(--color-blue-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-blue-light);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn,
+.wp-block-button__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--text-base);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary,
+.wp-block-button.is-style-fill .wp-block-button__link {
+    background: var(--gradient-button);
+    color: var(--color-white);
+}
+
+.btn-primary:hover,
+.wp-block-button.is-style-fill .wp-block-button__link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary,
+.wp-block-button.is-style-outline .wp-block-button__link {
+    background: transparent;
+    color: var(--color-blue-primary);
+    border: 2px solid var(--color-blue-primary);
+    padding: 10px 22px;
+}
+
+.btn-secondary:hover,
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+    background: rgba(45, 125, 210, 0.1);
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.card {
+    background: var(--color-navy-medium);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-slow);
+}
+
+.card:hover {
+    border-color: rgba(45, 125, 210, 0.5);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-text {
+    color: var(--color-gray-300);
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+.form-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+    background: var(--color-navy-dark);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--color-white);
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-blue-primary);
+    box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.2);
+}
+
+.form-input::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-gray-500);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--color-white);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.site-header .site-logo img,
+.site-logo img,
+.custom-logo {
+    height: 60px !important;
+    width: auto !important;
+    max-width: 200px !important;
+}
+
+.main-navigation a {
+    color: var(--color-white);
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: color var(--transition-fast);
+}
+
+.main-navigation a:hover {
+    color: var(--color-blue-light);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+    background: var(--color-navy-medium);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-3xl) 0 var(--spacing-xl);
+}
+
+.footer-links a {
+    color: var(--color-gray-300);
+    margin-right: var(--spacing-lg);
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--color-white);
+}
+
+.footer-copyright {
+    color: var(--color-gray-500);
+    font-size: var(--text-sm);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Hero Sections
+   ========================================================================== */
+
+.hero {
+    padding: var(--spacing-3xl) 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: var(--text-6xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-gray-300);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.section {
+    padding: var(--spacing-3xl) 0;
+}
+
+.section-title {
+    font-size: var(--text-3xl);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-alt {
+    background: var(--color-navy-medium);
+}
+
+/* ==========================================================================
+   Blog
+   ========================================================================== */
+
+.post-card {
+    background: var(--color-navy-medium);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-slow);
+}
+
+.post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.post-card-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.post-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.post-card:hover .post-card-image img {
+    transform: scale(1.05);
+}
+
+.post-card-content {
+    padding: var(--spacing-lg);
+}
+
+.post-card-meta {
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-card-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-card-title a {
+    color: var(--color-white);
+}
+
+.post-card-title a:hover {
+    color: var(--color-blue-light);
+}
+
+.post-card-excerpt {
+    color: var(--color-gray-300);
+    font-size: var(--text-sm);
+}
+
+/* Single Post */
+.single-post .entry-content {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.single-post .entry-content p {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+}
+
+.single-post .entry-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Author Box */
+.author-box {
+    background: var(--color-navy-medium);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+}
+
+.author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-name {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.author-bio {
+    color: var(--color-gray-300);
+    font-size: var(--text-sm);
+}
+
+/* ==========================================================================
+   Newsletter
+   ========================================================================== */
+
+.newsletter-section {
+    background: var(--gradient-brand);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.newsletter-section h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.newsletter-section p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-lg);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: var(--spacing-sm);
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.newsletter-form input {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.newsletter-form input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-white);
+}
+
+.newsletter-form button {
+    background: var(--color-white);
+    color: var(--color-blue-primary);
+    font-weight: 600;
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.grid {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: var(--text-4xl);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ==========================================================================
+   Coming Soon Badge
+   ========================================================================== */
+
+.badge-coming-soon {
+    display: inline-block;
+    background: var(--gradient-brand);
+    color: var(--color-white);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .site-header,
+    .site-footer,
+    .newsletter-section {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   GeneratePress Overrides
+   Force dark theme over GP defaults
+   ========================================================================== */
+
+/* Body and main content area */
+body,
+.site-content,
+.content-area,
+.site {
+    background-color: var(--color-navy-dark) !important;
+    color: var(--color-white) !important;
+}
+
+/* Remove content container background */
+.inside-article,
+.site-main,
+article,
+.entry-content,
+.page .entry-content,
+.single .entry-content {
+    background-color: transparent !important;
+    color: var(--color-gray-300) !important;
+}
+
+/* Header overrides */
+.site-header,
+#site-header,
+.main-header {
+    background-color: rgba(10, 22, 40, 0.95) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Site title/branding */
+.site-title,
+.site-title a,
+.site-branding .site-title a {
+    color: var(--color-white) !important;
+}
+
+.site-description {
+    color: var(--color-gray-300) !important;
+}
+
+/* Navigation overrides */
+.main-navigation,
+.primary-navigation,
+#primary-menu,
+.menu-toggle {
+    background-color: transparent !important;
+}
+
+.main-navigation a,
+.primary-navigation a,
+#primary-menu a,
+.main-navigation .menu > li > a,
+.menu-item a {
+    color: var(--color-white) !important;
+    transition: color var(--transition-fast) !important;
+}
+
+.main-navigation a:hover,
+.primary-navigation a:hover,
+#primary-menu a:hover,
+.main-navigation .menu > li > a:hover,
+.menu-item a:hover,
+.main-navigation .current-menu-item > a,
+.main-navigation .current_page_item > a {
+    color: var(--color-blue-light) !important;
+}
+
+/* Dropdown menus */
+.main-navigation ul ul,
+.main-navigation .sub-menu {
+    background-color: var(--color-navy-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.main-navigation ul ul a,
+.main-navigation .sub-menu a {
+    color: var(--color-gray-300) !important;
+}
+
+.main-navigation ul ul a:hover,
+.main-navigation .sub-menu a:hover {
+    background-color: rgba(45, 125, 210, 0.2) !important;
+    color: var(--color-white) !important;
+}
+
+/* Content text colors */
+.entry-title,
+.entry-title a,
+.page-title,
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-white) !important;
+}
+
+.entry-content,
+.entry-content p,
+.entry-summary,
+.entry-summary p,
+p {
+    color: var(--color-gray-300) !important;
+}
+
+.entry-content a,
+.entry-summary a {
+    color: var(--color-blue-primary) !important;
+}
+
+.entry-content a:hover,
+.entry-summary a:hover {
+    color: var(--color-blue-light) !important;
+}
+
+/* Footer overrides */
+.site-footer,
+#site-footer,
+.site-info,
+.footer-widgets {
+    background-color: var(--color-navy-medium) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: var(--color-gray-300) !important;
+}
+
+.site-footer a,
+.site-info a,
+.footer-widgets a {
+    color: var(--color-gray-300) !important;
+}
+
+.site-footer a:hover,
+.site-info a:hover,
+.footer-widgets a:hover {
+    color: var(--color-white) !important;
+}
+
+/* Sidebar widgets - hide on pages or style dark */
+.sidebar .widget,
+#secondary .widget,
+.widget-area .widget {
+    background-color: var(--color-navy-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-md) !important;
+    padding: var(--spacing-lg) !important;
+    margin-bottom: var(--spacing-lg) !important;
+}
+
+.widget-title,
+.sidebar .widget-title,
+#secondary .widget-title {
+    color: var(--color-white) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: var(--spacing-sm) !important;
+    margin-bottom: var(--spacing-md) !important;
+}
+
+.widget a,
+.sidebar a,
+#secondary a {
+    color: var(--color-blue-primary) !important;
+}
+
+.widget a:hover,
+.sidebar a:hover,
+#secondary a:hover {
+    color: var(--color-blue-light) !important;
+}
+
+/* GenerateBlocks overrides */
+.gb-container,
+.gb-grid-wrapper {
+    color: var(--color-gray-300) !important;
+}
+
+.gb-container h1,
+.gb-container h2,
+.gb-container h3,
+.gb-container h4,
+.gb-container h5,
+.gb-container h6 {
+    color: var(--color-white) !important;
+}
+
+/* Button container centering */
+.wp-block-buttons {
+    justify-content: center !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+}
+
+.wp-block-buttons.is-content-justification-center {
+    justify-content: center !important;
+}
+
+/* Buttons - GeneratePress and GenerateBlocks - Ultra specific overrides */
+.wp-block-button__link,
+.wp-block-button .wp-block-button__link,
+.wp-block-buttons .wp-block-button__link,
+.entry-content .wp-block-button__link,
+.site-content .wp-block-button__link,
+a.wp-block-button__link,
+.button,
+button:not(.menu-toggle),
+input[type="submit"],
+input[type="button"],
+.gb-button {
+    background: linear-gradient(135deg, #2D7DD2 0%, #4A9BE8 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+/* Force white text color on button links */
+.wp-block-button__link,
+.wp-block-button__link:link,
+.wp-block-button__link:visited,
+.wp-block-button .wp-block-button__link,
+.wp-block-buttons .wp-block-button .wp-block-button__link,
+.entry-content .wp-block-buttons .wp-block-button .wp-block-button__link {
+    color: #FFFFFF !important;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus,
+.wp-block-button__link:active,
+.button:hover,
+button:not(.menu-toggle):hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.gb-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(45, 125, 210, 0.4) !important;
+    color: #FFFFFF !important;
+}
+
+/* Outline button style */
+.wp-block-button.is-style-outline .wp-block-button__link,
+.wp-block-button.is-style-outline .wp-block-button__link:link,
+.wp-block-button.is-style-outline .wp-block-button__link:visited {
+    background: transparent !important;
+    color: #4A9BE8 !important;
+    border: 2px solid #4A9BE8 !important;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link:hover,
+.wp-block-button.is-style-outline .wp-block-button__link:focus {
+    background: rgba(45, 125, 210, 0.2) !important;
+    color: #FFFFFF !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Override any inline color styles WordPress adds */
+.wp-block-button__link[style*="color"],
+.wp-block-button .wp-block-button__link[style*="color"],
+.has-text-color.wp-block-button__link {
+    color: #FFFFFF !important;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link[style*="color"] {
+    color: #4A9BE8 !important;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+textarea,
+select {
+    background-color: var(--color-navy-dark) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--color-white) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-blue-primary) !important;
+    box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.2) !important;
+    outline: none !important;
+}
+
+/* Page header area */
+.page-header,
+.archive-header {
+    background-color: var(--color-navy-medium) !important;
+    padding: var(--spacing-xl) !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: var(--spacing-xl) !important;
+}
+
+/* Pagination */
+.pagination,
+.nav-links {
+    color: var(--color-gray-300) !important;
+}
+
+.pagination a,
+.nav-links a,
+.page-numbers {
+    color: var(--color-blue-primary) !important;
+    background-color: var(--color-navy-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: var(--spacing-sm) var(--spacing-md) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+.pagination a:hover,
+.nav-links a:hover,
+.page-numbers:hover,
+.page-numbers.current {
+    background-color: var(--color-blue-primary) !important;
+    color: var(--color-white) !important;
+}
+
+/* Comments section */
+.comments-area,
+#comments {
+    background-color: transparent !important;
+}
+
+.comment-list .comment {
+    background-color: var(--color-navy-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-md) !important;
+    padding: var(--spacing-lg) !important;
+    margin-bottom: var(--spacing-md) !important;
+}
+
+.comment-author,
+.comment-metadata {
+    color: var(--color-gray-500) !important;
+}
+
+.comment-content {
+    color: var(--color-gray-300) !important;
+}
+
+/* Remove default GP container padding/width on full-width pages */
+.full-width-content .site-main,
+.full-width-content .inside-article {
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+/* Ensure proper spacing for regular content */
+.inside-article {
+    padding: var(--spacing-xl) !important;
+}
+
+@media (max-width: 768px) {
+    .inside-article {
+        padding: var(--spacing-md) !important;
+    }
+}
+
+/* ==========================================================================
+   WPForms Dark Theme Styling
+   ========================================================================== */
+
+/* Form labels */
+.wpforms-container .wpforms-field-label,
+.wpforms-container label,
+.wpforms-field-label {
+    color: var(--color-white) !important;
+    font-weight: 500 !important;
+    margin-bottom: 8px !important;
+}
+
+/* Sub-labels (e.g., "First" under name field) */
+.wpforms-container .wpforms-field-sublabel,
+.wpforms-field-sublabel {
+    color: var(--color-gray-300) !important;
+}
+
+/* Field descriptions */
+.wpforms-container .wpforms-field-description,
+.wpforms-field-description {
+    color: var(--color-gray-500) !important;
+}
+
+/* Required asterisk */
+.wpforms-container .wpforms-required-label,
+.wpforms-required-label {
+    color: #ef4444 !important;
+}
+
+/* Input fields */
+.wpforms-container input[type="text"],
+.wpforms-container input[type="email"],
+.wpforms-container input[type="tel"],
+.wpforms-container input[type="url"],
+.wpforms-container input[type="number"],
+.wpforms-container textarea,
+.wpforms-container select,
+.wpforms-field input,
+.wpforms-field textarea,
+.wpforms-field select {
+    background-color: var(--color-navy-dark) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--color-white) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 12px 16px !important;
+}
+
+/* Placeholder text */
+.wpforms-container input::placeholder,
+.wpforms-container textarea::placeholder {
+    color: var(--color-gray-500) !important;
+}
+
+/* Focus state */
+.wpforms-container input:focus,
+.wpforms-container textarea:focus,
+.wpforms-container select:focus {
+    border-color: var(--color-blue-primary) !important;
+    box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.2) !important;
+    outline: none !important;
+}
+
+/* Select dropdown arrow (make it visible) */
+.wpforms-container select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23CBD5E1' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 12px center !important;
+    background-repeat: no-repeat !important;
+    background-size: 20px !important;
+    padding-right: 40px !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+
+/* Submit button */
+.wpforms-container .wpforms-submit,
+.wpforms-submit-container button,
+button.wpforms-submit {
+    background: linear-gradient(135deg, #2D7DD2 0%, #4A9BE8 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.wpforms-container .wpforms-submit:hover,
+button.wpforms-submit:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(45, 125, 210, 0.4) !important;
+}
+
+/* Error messages */
+.wpforms-container .wpforms-error,
+.wpforms-error {
+    color: #ef4444 !important;
+}
+
+/* Success message */
+.wpforms-container .wpforms-confirmation-container-full,
+.wpforms-confirmation-container-full {
+    background-color: var(--color-navy-medium) !important;
+    border: 1px solid rgba(45, 125, 210, 0.5) !important;
+    color: var(--color-white) !important;
+    padding: 20px !important;
+    border-radius: var(--radius-md) !important;
+}
+
+/* ==========================================================================
+   Contact Page Card Styling
+   ========================================================================== */
+
+/* Card container - use class "contact-card" on GenerateBlocks Container */
+.contact-card,
+.wp-block-generateblocks-container.contact-card {
+    background-color: var(--color-navy-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 40px !important;
+}
+
+/* Info card styling */
+.contact-info-card,
+.wp-block-generateblocks-container.contact-info-card {
+    background-color: var(--color-navy-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 40px !important;
+}
+
+.contact-info-card h3,
+.contact-info-card h4 {
+    color: var(--color-white) !important;
+    margin-bottom: 8px !important;
+}
+
+.contact-info-card p {
+    color: var(--color-gray-300) !important;
+    margin-bottom: 24px !important;
+}
+
+/* Divider line */
+.contact-divider {
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin: 24px 0 !important;
+}
+
+/* Icon styling for contact info */
+.contact-icon {
+    display: inline-block;
+    margin-right: 8px;
+    color: var(--color-blue-primary);
+}
+
+/* Contact page two-column layout */
+.contact-columns {
+    display: grid !important;
+    grid-template-columns: 1.5fr 1fr !important;
+    gap: 40px !important;
+    align-items: start !important;
+}
+
+@media (max-width: 900px) {
+    .contact-columns {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Make WPForms look better in cards */
+.contact-card .wpforms-container {
+    margin: 0 !important;
+}
+
+.contact-card .wpforms-field {
+    margin-bottom: 20px !important;
+}
+
+/* Two-column form fields where appropriate */
+.contact-card .wpforms-field-name .wpforms-field-row {
+    display: flex !important;
+    gap: 16px !important;
+}
+
+.contact-card .wpforms-field-name .wpforms-field-row .wpforms-field-row-block {
+    flex: 1 !important;
+}
+
+/* Email link styling */
+.contact-email-link {
+    color: var(--color-blue-primary) !important;
+    font-size: 1.125rem !important;
+    text-decoration: none !important;
+}
+
+.contact-email-link:hover {
+    color: var(--color-blue-light) !important;
+}
